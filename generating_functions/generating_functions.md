@@ -49,7 +49,7 @@ Simply put a generating function is way of laying out all the terms of a sequenc
  We do this by defining the generating function say $G(x)$ where
  $$G(x)= \sum_{n\geq 0}a_nx^n $$
 
-Now what we will do is get the previous equation we have to "fit" so we can use the function G(x)
+Now what we will do is get the previous equation we have to "fit" so we can use the function $G(x)$
 We do this by first redefining the equation $$a_{n+2}=a_{n+1}+a_n, a_0:=1 a_1:=2$$
 
 Notice that $a_0 =1$ and $a_1 = 2$ this will just shift the starting position of the sequence so now the nth  number in this sequence is the $n-1$ number in the other sequence.
