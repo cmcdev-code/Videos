@@ -3,7 +3,8 @@ You may have heard of the word recursion from your computer science textbook or 
 
 Oftentimes in mathematics and in computer science seemingly hard problems can be broken down into smaller problems that each have simpler and elegant solutions. One example of this is the “climbing stairs problem”.  
 
-    “Suppose we have a staircase of length n and we can either take 1 step or 2 steps. How many distinct ways are we able to reach the top?” 
+    “Suppose we have a staircase of length n and we can either take 1 step or 2 steps.
+    How many distinct ways are we able to reach the top?” 
 
 If we break this down, a staircase with a length of 1 only allows one way to get to the top; by taking **one** step.
 Furthermore, if we have a staircase of length 2 then now we have some possibilities. We can climb each step one at a time or climb 2 at the same time, which leaves us with **2** distinct ways to get to the top.
@@ -48,10 +49,10 @@ Simply put a generating function is way of laying out all the terms of a sequenc
  We do this by defining the generating function say $G(x)$ where
  $$G(x)= \sum_{n\geq 0}a_nx^n $$
 
-Now what we will do is get the previous equation we have to "fit" so we can use the function G(x)
+Now what we will do is get the previous equation we have to "fit" so we can use the function $G(x)$
 We do this by first redefining the equation $$a_{n+2}=a_{n+1}+a_n, a_0:=1 a_1:=2$$
 
-Notice that $a_0 =1 $ and $a_1 = 2$ this will just shift the starting position of the sequence so now the nth  number in this sequence is the $n-1$ number in the other sequence.
+Notice that $a_0 =1$ and $a_1 = 2$ this will just shift the starting position of the sequence so now the nth  number in this sequence is the $n-1$ number in the other sequence.
 Now what we do is multiply both sides by $x^{n+2}$.
 
 $$a_{n+2}  x^{n+2} =a_{n+1} x^{n+2}+a_n  x^{n+2}$$
@@ -65,7 +66,7 @@ $$
 
 Notice that all of these are almost in the form of how we defined $G(x)$. If we are able to successfully manipulate them then we can apply the replace it with $G(x)$.
 
-Let us first start on the left side of the equation. With $\sum_{n \geq 0} a_{n+2}  x^{n+2} $.
+Let us first start on the left side of the equation. With $\sum_{n \geq 0} a_{n+2}  x^{n+2}$.
 
 If we were to write out the terms of $G(x)$ it would look like this
 $$a_0x^0+a_1x^1+...+a_nx^n+... $$
@@ -109,7 +110,7 @@ Subbing in the value that we defined $a_0$ to be we have.
 $$ \sum_{n\geq 0 }a_{n+1}x^{n+1}= G(x) - 1$$
 
 
-Now that we know what $ \sum_{n\geq 0 }a_{n+1}x^{n+1} = G(x) -1 $ we can replace it in the first term on the right side. 
+Now that we know what $\sum_{n\geq 0 }a_{n+1}x^{n+1} = G(x) -1$ we can replace it in the first term on the right side. 
 
 $$\sum_{n\geq0} a_{n+1} x^{n+2}= x\sum_{n\geq0} a_{n+1} x^{n+1}$$
 
