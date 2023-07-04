@@ -33,7 +33,7 @@ Or if i were to implement this as a sequence it would follow this equation
 
 $$b_{n+2}=b_{n+1}+b_n, b_1:=1 b_2:=2$$
 
-Either one of these will **always** produce the correct solution after enough iterations, however if you think about it this is quite a large waste of resources. For example if we wanted to know the number of ways to climb a staircase of length $n$ then using this approach we would have to know the number of ways to climb both staircases of length $n-1$ and $n-2$. Now again if we did not know the number of ways to climb these, we would have to know the number of ways to climb a stair case of $n-2$, $n-3$ and $n-3$,$n-4$ respectively. It should be pretty clear now on why we would want a method that is not so iterative. So this makes us ask the question. 
+Either one of these will **always** produce the correct solution after enough iterations, however if you think about it this is quite a large waste of resources. For example if we wanted to know the number of ways to climb a staircase of length $n$ then using this approach we would have to know the number of ways to climb both staircases of length $n-1$ and $n-2$. Now again if we did not know the number of ways to climb these, we would have to know the number of ways to climb a stair case of $n-2$, $n-3$ and $n-3$, $n-4$ respectively. It should be pretty clear now on why we would want a method that is not so iterative. So this makes us ask the question. 
 
     "Is there a way to calculate the number of ways to climb a staircase of length n without needing to know the number of ways to calculate number of ways to climb leading up to n?" 
 
