@@ -1,7 +1,37 @@
-
 from manim import *
-class SquareAndCircle(Scene):
+
+class GeneratingFunction(Scene):
     def construct(self):
+
+        txt=Text("What is recursion?",slant=ITALIC).scale(2)
+
+        self.play(FadeIn(txt))
+
+        self.wait(2)
+
+        self.remove(txt)
+        
+        txt=Text("Recursion occurs when the definition of a concept or process"+"\n"+ "depends on a simpler version of itself.".center(len("    Recursion occurs when the definition of a concept or process"))).scale(.6)
+
+
+        self.play(FadeIn(txt))
+
+        self.wait(2)
+
+        self.remove(txt)
+
+        txt=Text("Suppose we had a staircase of length n and we"+"\n"+"can either travel 1 or 2 steps at a time.").scale(0.8)
+        self.play(FadeIn(txt))
+
+        self.wait(2)
+
+        self.remove(txt)
+        txt=Text("How many distinct ways can we reach the top?").scale(0.8)
+        self.play(FadeIn(txt))
+
+        self.wait(2)
+
+        self.remove(txt)
 
         length=5
         squares=[]
@@ -26,7 +56,7 @@ class SquareAndCircle(Scene):
         
         first_group=VGroup(* squares[:length+15])
 
-        self.play(first_group.animate.scale(0.3).set_x(first_group.get_x()-10).set_y(first_group.get_y()-9.4), run_time=5)
+        self.play(first_group.animate.scale(0.3).set_x(first_group.get_x()-9.1).set_y(first_group.get_y()-9.4), run_time=5)
 
        
         length=1  
@@ -50,7 +80,7 @@ class SquareAndCircle(Scene):
         text= Text('1').scale(1)
         text.next_to(squares[0],DOWN)
         self.play(Create(text),run_time=0.6)
-        
+        self.wait(1)
 
         for i in range(length):
             self.remove(text) 
@@ -420,3 +450,529 @@ class SquareAndCircle(Scene):
         
         self.play(ReplacementTransform(group_3_copy_copy,copy_group_3))
         self.wait(2)
+
+        self.remove(copy_group_3,text,group_5)
+        # Define the generating function equation
+        rr = MathTex("b_{n+2}=b_{n+1}+b_n, b_1:=1 b_2:=2")
+        
+        self.play(Create(rr))
+
+        rr_1=MathTex("a_{n+2}=a_{n+1}+a_n, a_0:=1 a_1:=2")
+
+
+        self.wait(3)
+
+
+        self.play(Transform(rr,rr_1))
+
+
+
+        generating_function=MathTex("G(x)= \\sum_{n\\geq 0}a_nx^n")
+
+        self.play(Transform(rr,generating_function),run_time=1.0)
+
+        self.wait(2)
+
+        self.play(Transform(rr,rr_1))
+
+        self.wait(3)
+
+        rr_1_x=MathTex("a_{n+2}  x^{n+2} =a_{n+1} x^{n+2}+a_n  x^{n+2}")
+
+        self.play(Transform(rr,rr_1_x))
+        self.wait(3)
+
+        rr_s=MathTex("\\sum_{n \\geq 0} a_{n+2}  x^{n+2} =\\sum_{n \\geq 0}a_{n+1} x^{n+2}+\\sum_{n \\geq 0}a_n  x^{n+2}")
+        self.play(Transform(rr,rr_s))
+
+        self.wait(3)
+
+        rr_left=MathTex("\\sum_{n \\geq 0} a_{n+2}  x^{n+2}")
+        self.play(Transform(rr,rr_left))
+        
+        self.wait(3)
+
+        rr_l_s=MathTex("G(x)=a_0x^0+a_1x^1+...+a_nx^n+...")
+
+        self.play(Transform(rr,rr_l_s))
+
+        self.wait(3)
+
+        rr___1=MathTex("\\sum_{n\\geq0}a_{n+2}x^{n+2} = a_2x^2+a_3x^3+...+a_nx^n+...")
+        self.play(Transform(rr,rr___1))
+
+        self.wait(2)
+
+        rr_1_2=MathTex("\\sum_{n \\geq 0} a_{n+2}  x^{n+2} =G(x) -a_0 - a_1  x")
+        self.play(Transform(rr,rr_1_2))
+        
+        self.wait(2)
+        rr_1_2_2=MathTex("G(x) -a_0 - a_1  x^1= G(x)- 1 -2x")
+
+        self.play(Transform(rr,rr_1_2_2))
+        self.wait(2)
+
+        rr_21=MathTex("G(x) -1 - 2  x =\\sum_{n \\geq 0}a_{n+1} x^{n+2}+\\sum_{n \\geq 0}a_n  x^{n+2}")
+
+        self.play(Transform(rr,rr_21))
+        self.wait(2)
+
+        rr_21=MathTex("\\sum_{n\\geq0} a_{n+1} x^{n+2}= x\\sum_{n\\geq0} a_{n+1} x^{n+1}")
+
+        self.play(Transform(rr,rr_21))
+
+        self.wait(2)
+        rr_21=MathTex("\\sum_{n \\geq 0} a_{n+1}x^{n+1}")
+
+        
+        self.play(Transform(rr,rr_21))
+
+        self.wait(2)
+
+        rr_21=MathTex("\\sum_{n\\geq 0 }a_{n+1}x^{n+1} = a_1x^1 + a_2x^2+...+a_nx^n+...")
+
+        
+        self.play(Transform(rr,rr_21))
+
+        self.wait(2)
+
+        rr_21=MathTex("a_0x^0 +a_1x^1+...+a_nx^n+...")
+
+        self.play(Transform(rr,rr_21))
+
+        self.wait(2)
+
+        rr_21=MathTex(" \\sum_{n\\geq 0 }a_{n+1}x^{n+1}= G(x) - a_0x^0")
+
+        self.play(Transform(rr,rr_21))
+
+        self.wait(2)
+
+        rr_21=MathTex("\\sum_{n\\geq 0 }a_{n+1}x^{n+1}= G(x) - 1")
+        self.play(Transform(rr,rr_21))
+
+        self.wait(2)
+        
+        rr_21=MathTex("\\sum_{n\\geq0} a_{n+1} x^{n+2}= x\\sum_{n\\geq0} a_{n+1} x^{n+1}")
+        self.play(Transform(rr,rr_21))
+
+        self.wait(2)
+        
+        rr_21=MathTex("\\sum_{n\\geq0} a_{n+1} x^{n+2}= x(G(x)-1)")
+        self.play(Transform(rr,rr_21))
+
+        self.wait(2)
+        
+        rr_21=MathTex("G(x) -1 - 2  x =\\sum_{n \\geq 0}a_{n+1} x^{n+2}+\\sum_{n \\geq 0}a_n  x^{n+2}")
+
+        self.play(Transform(rr,rr_21))
+
+        self.wait(2)
+
+        rr_21=MathTex("G(x) -1 - 2  x =x(G(x)-1)+\\sum_{n \\geq 0}a_n  x^{n+2}")        
+
+        self.play(Transform(rr,rr_21))
+
+        self.wait(2)
+        
+        rr_21=MathTex("\\sum_{n \\geq 0}a_n  x^{n+2}=x^2\\sum_{n \\geq 0}a_n  x^{n}")
+
+        self.play(Transform(rr,rr_21))
+
+        self.wait(2)
+        
+        rr_21=MathTex("\\sum_{n \\geq 0} a_n  x^n = G(x)")
+
+        self.play(Transform(rr,rr_21))
+
+        self.wait(2)
+
+        rr_21=MathTex("\\sum_{n \\geq 0}a_n  x^{n+2}=x^2\\sum_{n \\geq 0}a_n  x^{n}")
+        self.play(Transform(rr,rr_21))
+
+        self.wait(2)
+
+        rr_21=MathTex("\\sum_{n \\geq 0}a_n  x^{n+2}=x^2G(x)")
+
+        self.play(Transform(rr,rr_21))
+
+        self.wait(2)
+
+
+        rr_21=MathTex("G(x) -1 - 2  x =x(G(x)-1)+\\sum_{n \\geq 0}a_n  x^{n+2}")
+
+        self.play(Transform(rr,rr_21))
+
+        self.wait(2)
+
+        rr_21=MathTex("G(x) -1 - 2  x =x(G(x)-1)+x^2\\sum_{n \\geq 0}a_n  x^{n}")
+
+        
+        self.play(Transform(rr,rr_21))
+
+        self.wait(2)
+
+        rr_21=MathTex("G(x) -1 - 2  x =x(G(x)-1)+x^2G(x)")
+        self.play(Transform(rr,rr_21))
+
+        self.wait(2)
+        rr_21=MathTex("G(x) -1 - 2  x =x G(x) -x+x^2  G(x)")
+        self.play(Transform(rr,rr_21))
+
+        self.wait(2)
+        rr_21=MathTex("G(x)-x G(x) -x^2  G(x)=-x +1 +2  x")
+
+        self.play(Transform(rr,rr_21))
+
+        self.wait(2)        
+
+
+        rr_21=MathTex("G(x)-xG(x) -x^2G(x)=1 +x")
+
+        self.play(Transform(rr,rr_21))
+
+        self.wait(2)
+
+        rr_21=MathTex("G(x)(1-x -x^2)=1 +x")
+
+        self.play(Transform(rr,rr_21))
+
+        self.wait(2)
+
+        rr_21=MathTex("G(x)=\\frac{1 +x}{1-x -x^2}") 
+        self.play(Transform(rr,rr_21))
+
+        self.wait(2)
+        
+        rr_21=MathTex("G(x)=\\frac{1}{1-x -x^2} +\\frac{x}{1-x -x^2}")
+        self.play(Transform(rr,rr_21))
+
+        self.wait(2)
+
+  
+        rr_21=MathTex("G(x)=\\frac{1}{1-x -x^2} +\\frac{x}{1-x -x^2}")
+        self.play(Transform(rr,rr_21))
+
+        self.wait(2)
+
+
+        rr_21=MathTex("\\frac{1}{1-x -x^2} = \\frac{1}{(x+\\frac{1+\\sqrt{5}}{2})(-x +\\frac{-1+\\sqrt{5}}{2} )}").scale(0.6)
+        self.play(Transform(rr,rr_21))
+
+        self.wait(2)
+
+        rr_21=MathTex("\\frac{1}{(x+\\frac{1+\\sqrt{5}}{2})(-x +\\frac{-1+\\sqrt{5}}{2} )}= \\frac{A}{x+\\frac{1+\\sqrt{5}}{2}}+ \\frac{B}{-x +\\frac{-1+\\sqrt{5}}{2}}").scale(0.6)
+        self.play(Transform(rr,rr_21))
+
+        self.wait(2)
+
+        rr_21=MathTex("1 = A(-x +\\frac{-1 + \\sqrt{5}}{2}) + B(x+ \\frac{1 + \\sqrt{5}}{2})")
+        self.play(Transform(rr,rr_21))
+
+        self.wait(2)
+
+
+        rr_21=MathTex("1 = A(-\\frac{-1 + \\sqrt{5}}{2} +\\frac{-1 + \\sqrt{5}}{2}) + B(\\frac{-1 + \\sqrt{5}}{2}+ \\frac{1 + \\sqrt{5}}{2})").scale(0.6)
+        self.play(Transform(rr,rr_21))
+
+        self.wait(2)
+
+        rr_21=MathTex(" 1 = A\\cdot0 + B(\\frac{-1 + \\sqrt{5}}{2}+ \\frac{1 + \\sqrt{5}}{2})")
+
+        self.play(Transform(rr,rr_21))
+
+        self.wait(2)
+        rr_21=MathTex(" 1 = B(\\frac{-1 + \\sqrt{5}}{2}+ \\frac{1 + \\sqrt{5}}{2})")
+
+        self.play(Transform(rr,rr_21))
+
+        self.wait(2)
+
+        rr_21=MathTex("1 = B\\sqrt{5} ")
+        self.play(Transform(rr,rr_21))
+
+        self.wait(2)
+       
+        rr_21=MathTex("B= \\frac{1}{\\sqrt{5}}")
+        self.play(Transform(rr,rr_21))
+
+        self.wait(2)
+        rr_21=MathTex(" 1 = A(-x +\\frac{-1 + \\sqrt{5}}{2}) + \\frac{1}{\\sqrt{5}}(x+ \\frac{1 + \\sqrt{5}}{2})")
+        self.play(Transform(rr,rr_21))
+
+        self.wait(2)  
+
+        rr_21=MathTex("1 = A(-\\frac{1 + \\sqrt{5}}{2} +\\frac{-1 + \\sqrt{5}}{2}) + \\frac{1}{\\sqrt{5}}(-\\frac{1 + \\sqrt{5}}{2}+ \\frac{1 + \\sqrt{5}}{2})").scale(0.6)
+        self.play(Transform(rr,rr_21))
+
+        self.wait(2)  
+        rr_21=MathTex("1 = A(-\\frac{1 + \\sqrt{5}}{2} +\\frac{-1 + \\sqrt{5}}{2}) + \\frac{1}{\\sqrt{5}}\\cdot 0")
+        self.play(Transform(rr,rr_21))
+
+        self.wait(2)  
+        rr_21=MathTex("1 = A(\\frac{1 + \\sqrt{5}}{2} +\\frac{-1 + \\sqrt{5}}{2})")
+        self.play(Transform(rr,rr_21))
+
+        self.wait(2)  
+        rr_21=MathTex("1= A \\sqrt{5}")
+        
+        self.play(Transform(rr,rr_21))
+
+        self.wait(2)
+        rr_21=MathTex("A= \\frac{1}{\\sqrt{5}}")
+
+        self.play(Transform(rr,rr_21))
+        
+        self.wait(2)
+        rr_21=MathTex("\\frac{1}{(x+\\frac{1+\\sqrt{5}}{2})(-x +\\frac{-1+\\sqrt{5}}{2} )}=  \\frac{1}{\\sqrt{5}(x+\\frac{1+\\sqrt{5}}{2})}+ \\frac{1}{\\sqrt{5}(-x +\\frac{-1+\\sqrt{5}}{2})}").scale(0.6)
+        self.play(Transform(rr,rr_21))
+        
+        self.wait(2)
+        rr_21=MathTex("G(x)= \\frac{1}{(x+\\frac{1+\\sqrt{5}}{2})(-x +\\frac{-1+\\sqrt{5}}{2} )} +\\frac{x}{1-x -x^2}")
+
+
+        self.play(Transform(rr,rr_21))
+        
+        self.wait(2)
+
+
+        rr_21=MathTex("G(x)= \\frac{1}{\\sqrt{5}(x+\\frac{1+\\sqrt{5}}{2})}+ \\frac{1}{\\sqrt{5}(-x +\\frac{-1+\\sqrt{5}}{2})} +\\frac{x}{1-x -x^2}")
+
+        self.play(Transform(rr,rr_21))
+        
+        self.wait(2)
+
+        rr_21=MathTex("\\frac{x}{1-x -x^2}")
+
+        self.play(Transform(rr,rr_21))
+        
+        self.wait(2)
+
+        rr_21=MathTex("\\frac{x}{(x+\\frac{1+\\sqrt{5}}{2})(-x +\\frac{-1+\\sqrt{5}}{2} )}= \\frac{A}{x+\\frac{1+\\sqrt{5}}{2}}+ \\frac{B}{-x +\\frac{-1+\\sqrt{5}}{2}}").scale(0.6)
+
+        self.play(Transform(rr,rr_21))
+        
+        self.wait(2)
+
+        rr_21=MathTex("x= A(-x+\\frac{-1+\\sqrt{5}}{2}) +B(x+\\frac{1+\\sqrt{5}}{2})")
+
+        self.play(Transform(rr,rr_21))
+        
+        self.wait(2)
+
+        rr_21=MathTex("\\frac{-1+\\sqrt{5}}{2}= A(-\\frac{-1+\\sqrt{5}}{2}+\\frac{-1+\\sqrt{5}}{2}) +B(\\frac{-1+\\sqrt{5}}{2}+\\frac{1+\\sqrt{5}}{2})").scale(0.5)
+
+        
+        self.play(Transform(rr,rr_21))
+        
+        self.wait(2)
+
+
+        rr_21=MathTex("\\frac{-1+\\sqrt{5}}{2}= A\\cdot0 +B(\\frac{-1+\\sqrt{5}}{2}+\\frac{1+\\sqrt{5}}{2})")
+
+                
+        self.play(Transform(rr,rr_21))
+        
+        self.wait(2)
+
+        rr_21=MathTex("\\frac{-1+\\sqrt{5}}{2}=B(\\frac{-1+\\sqrt{5}}{2}+\\frac{1+\\sqrt{5}}{2})")
+
+                
+        self.play(Transform(rr,rr_21))
+        
+        self.wait(2)
+
+        rr_21=MathTex("\\frac{-1+\\sqrt{5}}{2}=B\\sqrt{5}")
+
+                
+        self.play(Transform(rr,rr_21))
+        
+        self.wait(2)
+
+        rr_21=MathTex("B=\\frac{-1+\\sqrt{5}}{2\\sqrt{5}}")
+
+                
+        self.play(Transform(rr,rr_21))
+        
+        self.wait(2)
+
+        rr_21=MathTex("-\\frac{1+\\sqrt{5}}{2}= A(\\frac{1+\\sqrt{5}}{2}+\\frac{-1+\\sqrt{5}}{2}) +\\frac{-1+\\sqrt{5}}{2\\sqrt{5}}(-\\frac{1+\\sqrt{5}}{2}+\\frac{1+\\sqrt{5}}{2})").scale(0.6)
+
+                
+        self.play(Transform(rr,rr_21))
+        
+        self.wait(2)
+
+
+        rr_21=MathTex("-\\frac{1+\\sqrt{5}}{2}= A(\\frac{1+\\sqrt{5}}{2}+\\frac{-1+\\sqrt{5}}{2}) +\\frac{-1+\\sqrt{5}}{2\\sqrt{5}}\\cdot0").scale(0.6)
+
+                
+        self.play(Transform(rr,rr_21))
+        
+        self.wait(2)
+
+        rr_21=MathTex("\\frac{-1-\\sqrt{5}}{2}= A(\\frac{1+\\sqrt{5}}{2}+\\frac{-1+\\sqrt{5}}{2})")
+
+                
+        self.play(Transform(rr,rr_21))
+        
+        self.wait(2)
+
+
+        rr_21=MathTex("-\\frac{-1-\\sqrt{5}}{2}= A \\sqrt{5}")
+                
+        self.play(Transform(rr,rr_21))
+        
+        self.wait(2)
+
+
+        rr_21=MathTex("A=\\frac{-1-\\sqrt{5}}{2\\sqrt{5}}")
+
+                
+        self.play(Transform(rr,rr_21))
+        
+        self.wait(2)
+
+
+        rr_21=MathTex("\\frac{x}{(x+\\frac{1+\\sqrt{5}}{2})(-x +\\frac{-1+\\sqrt{5}}{2} )}= \\frac{-1-\\sqrt{5}}{2\\sqrt{5}(x+\\frac{1+\\sqrt{5}}{2})}+ \\frac{-1+\\sqrt{5}}{2\\sqrt{5}(-x +\\frac{-1+\\sqrt{5}}{2})}").scale(0.6)
+
+                
+        self.play(Transform(rr,rr_21))
+        
+        self.wait(2)
+
+
+        rr_21=MathTex("G(x)= \\frac{1}{\\sqrt{5}(x+\\frac{1+\\sqrt{5}}{2})}+ \\frac{1}{\\sqrt{5}(-x +\\frac{-1+\\sqrt{5}}{2})} +\\frac{x}{1-x -x^2}")
+
+                
+        self.play(Transform(rr,rr_21))
+        
+        self.wait(2)
+
+        rr_21=MathTex("G(x)= \\frac{1}{\\sqrt{5}(x+\\frac{1+\\sqrt{5}}{2})}+ \\frac{1}{\\sqrt{5}(-x +\\frac{-1+\\sqrt{5}}{2})} +\\frac{-1-\\sqrt{5}}{2\\sqrt{5}(x+\\frac{1+\\sqrt{5}}{2})}+ \\frac{-1+\\sqrt{5}}{2\\sqrt{5}(-x +\\frac{-1+\\sqrt{5}}{2})}").scale(0.6)
+
+                
+        self.play(Transform(rr,rr_21))
+        
+        self.wait(2)
+
+        rr_21=MathTex("G(x)= \\frac{1}{\\sqrt{5}(x+\\frac{1+\\sqrt{5}}{2})}+ \\frac{1}{\\sqrt{5}(-x +\\frac{-1+\\sqrt{5}}{2})} + \\frac{-1-\\sqrt{5}}{2\\sqrt{5}(x+\\frac{1+\\sqrt{5}}{2})}+ \\frac{-1+\\sqrt{5}}{2\\sqrt{5}(-x +\\frac{-1+\\sqrt{5}}{2})}").scale(0.6)
+
+                
+        self.play(Transform(rr,rr_21))
+        
+        self.wait(2)
+
+        rr_21=MathTex("G(x)= \\frac{2}{2\\sqrt{5}(x+\\frac{1+\\sqrt{5}}{2})}+ \\frac{2}{2\\sqrt{5}(-x +\\frac{-1+\\sqrt{5}}{2})} + \\frac{-1-\\sqrt{5}}{2\\sqrt{5}(x+\\frac{1+\\sqrt{5}}{2})}+ \\frac{-1+\\sqrt{5}}{2\\sqrt{5}(-x +\\frac{-1+\\sqrt{5}}{2})}").scale(0.6)
+                
+        self.play(Transform(rr,rr_21))
+        
+        self.wait(2)
+
+        rr_21=MathTex("G(x)= \\frac{1-\\sqrt{5}}{2\\sqrt{5}(x+\\frac{1+\\sqrt{5}}{2})}+ \\frac{1+\\sqrt{5}}{2\\sqrt{5}(-x +\\frac{-1+\\sqrt{5}}{2})}")
+
+                
+        self.play(Transform(rr,rr_21))
+        
+        self.wait(2)
+
+
+
+        rr_21=MathTex("C \\frac{1}{1-a}= C\\sum_{n\\geq 0}a^n")
+                
+        self.play(Transform(rr,rr_21))
+        
+        self.wait(2)
+
+
+  
+        rr_21=MathTex("G(x)= \\frac{1-\\sqrt{5}}{2\\sqrt{5}(x+\\frac{1+\\sqrt{5}}{2})}+ \\frac{1+\\sqrt{5}}{2\\sqrt{5}(-x +\\frac{-1+\\sqrt{5}}{2})}")
+
+                
+        self.play(Transform(rr,rr_21))
+        
+        self.wait(2)
+
+        rr_21=MathTex("G(x)= \\frac{1-\\sqrt{5}}{2\\sqrt{5}(\\frac{x}{\\frac{1+\\sqrt{5}}{2}}+1)\\cdot \\frac{1+\\sqrt{5}}{2}}+ \\frac{1+\\sqrt{5}}{2\\sqrt{5}(\\frac{-x}{\\frac{-1+\\sqrt{5}}{2}} +1)\\cdot \\frac{-1+\\sqrt{5}}{2}}").scale(0.6)
+
+                
+        self.play(Transform(rr,rr_21))
+        
+        self.wait(2)
+
+        rr_21=MathTex("G(x)= \\frac{1-\\sqrt{5}}{\\sqrt{5}(1+\\sqrt{5})(1- \\frac{-2x}{1+\\sqrt{5}})}+ \\frac{1+\\sqrt{5}}{\\sqrt{5}(-1+\\sqrt{5})(1 - \\frac{2x}{-1+\\sqrt{5}})}")
+                
+        self.play(Transform(rr,rr_21))
+        
+        self.wait(2)
+
+        rr_21=MathTex("G(x)= \\frac{1-\\sqrt{5}}{\\sqrt{5}(1+\\sqrt{5})} \\sum_{n \\geq 0} (\\frac{-2}{1+\\sqrt{5}})^nx^n+ \\frac{1+\\sqrt{5}}{\\sqrt{5}(-1+\\sqrt{5})}\\sum_{n \\geq 0} (\\frac{2}{-1+\\sqrt{5}})^n x^n").scale(0.6)
+
+                
+        self.play(Transform(rr,rr_21))
+        
+        self.wait(2)
+
+
+        rr_21=MathTex("G(x)= \\sum_{n \\geq 0} (\\frac{1-\\sqrt{5}}{\\sqrt{5}(1+\\sqrt{5})}(\\frac{-2}{1+\\sqrt{5}})^n+ \\frac{1+\\sqrt{5}}{\\sqrt{5}(-1+\\sqrt{5})} (\\frac{2}{-1+\\sqrt{5}})^n) x^n").scale(0.6)
+
+                
+        self.play(Transform(rr,rr_21))
+        
+        self.wait(2)
+
+
+        rr_21=MathTex("\\sum_{n \\geq 0}a_nx^n= \\sum_{n \\geq 0}( \\frac{1-\\sqrt{5}}{\\sqrt{5}(1+\\sqrt{5})}(\\frac{-2}{1+\\sqrt{5}})^n+ \\frac{1+\\sqrt{5}}{\\sqrt{5}(-1+\\sqrt{5})} (\\frac{2}{-1+\\sqrt{5}})^n) x^n").scale(0.6)
+
+                
+        self.play(Transform(rr,rr_21))
+        
+        self.wait(2)
+
+
+        rr_21=MathTex("a_n= \\frac{1-\\sqrt{5}}{\\sqrt{5}(1+\\sqrt{5})}(\\frac{-2}{1+\\sqrt{5}})^n+ \\frac{1+\\sqrt{5}}{\\sqrt{5}(-1+\\sqrt{5})} (\\frac{2}{-1+\\sqrt{5}})^n")
+
+                
+        self.play(Transform(rr,rr_21))
+        
+        self.wait(2)
+
+        rr_21=MathTex("b_n=a_{n-1}")
+
+                
+        self.play(Transform(rr,rr_21))
+        
+        self.wait(2)
+
+
+        rr_21=MathTex("b_n= \\frac{1-\\sqrt{5}}{\\sqrt{5}(1+\\sqrt{5})}(\\frac{-2}{1+\\sqrt{5}})^{n-1}+ \\frac{1+\\sqrt{5}}{\\sqrt{5}(-1+\\sqrt{5})} (\\frac{2}{-1+\\sqrt{5}})^{n-1}")
+
+                
+        self.play(Transform(rr,rr_21))
+        
+        self.wait(2)
+
+        rr_21=MathTex("b_n= \\frac{1-\\sqrt{5}}{\\sqrt{5}(1+\\sqrt{5})}(\\frac{-2}{1+\\sqrt{5}})^{n}\\cdot \\frac{1+\\sqrt{5}}{2}+ \\frac{1+\\sqrt{5}}{\\sqrt{5}(-1+\\sqrt{5})} (\\frac{2}{-1+\\sqrt{5}})^{n}\\cdot \\frac{-1+\\sqrt{5}}{2}").scale(0.6)
+
+                
+        self.play(Transform(rr,rr_21))
+        
+        self.wait(2)
+
+        rr_21=MathTex("b_n= \\frac{1-\\sqrt{5}}{-2\\sqrt{5}}(\\frac{-2}{1+\\sqrt{5}})^{n}+ \\frac{1+\\sqrt{5}}{2\\sqrt{5}} (\\frac{2}{-1+\\sqrt{5}})^{n}")
+
+                
+        self.play(Transform(rr,rr_21))
+        
+        self.wait(2)
+
+        rr_21=MathTex("b_n= \\frac{1-\\sqrt{5}}{-2\\sqrt{5}}(\\frac{1-\\sqrt{5}}{2})^{n}+ \\frac{1+\\sqrt{5}}{2\\sqrt{5}} (\\frac{1+\\sqrt{5}}{2})^{n}")
+        self.wait(3)
+
+
+
+    
+
+
+
+
